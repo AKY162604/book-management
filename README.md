@@ -33,7 +33,7 @@ This project is a FastAPI-based application for managing books and their reviews
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/Fast-API-Project.git
+    git clone git@github.com:AKY162604/book-management.git
     cd Fast-API-Project
     ```
 
