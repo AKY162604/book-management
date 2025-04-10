@@ -1,5 +1,5 @@
 ```markdown
-# FastAPI Book Management API
+# Book Management API
 
 This project is a FastAPI-based application for managing books and their reviews. It includes endpoints for creating, reading, updating, and deleting books, as well as generating summaries and recommendations using a language model.
 
@@ -34,7 +34,7 @@ This project is a FastAPI-based application for managing books and their reviews
 1. Clone the repository:
     ```bash
     git clone git@github.com:AKY162604/book-management.git
-    cd Fast-API-Project
+    cd BOOK-MANAGEMENT
     ```
 
 2. Install dependencies:
