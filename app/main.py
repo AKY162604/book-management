@@ -4,16 +4,24 @@ from concurrent.futures import ThreadPoolExecutor
 from math import ceil
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends, FastAPI, HTTPException, Request, Response, Query
-from sqlalchemy.orm import Session
 from fastapi import status
 from . import crud, schemas
+from .models import User
 from .database import engine, get_db, Base
 from langchain_community.llms import LlamaCpp
 from langchain_core.callbacks import CallbackManager, StreamingStdOutCallbackHandler
 from dotenv import load_dotenv
+from . import auth
 
-app = FastAPI()
+
+app = FastAPI(dependencies=[Depends(auth.get_current_user)])
+# Include the authentication router
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
+
 executor = ThreadPoolExecutor()
+# Load environment variables from .env file
+# Ensure you have a .env file with the necessary variables
+# such as DB_URL, LLMA_FILE_NAME, etc.
 load_dotenv()
 
 
@@ -87,7 +95,7 @@ def generate(prompt):
     Returns:
         str: The generated response from the language model.
     """
-    return llm(prompt)
+    return llm.invoke(prompt)
 
 
 @app.post("/books/", response_model=schemas.BookCreate)

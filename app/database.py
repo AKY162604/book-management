@@ -19,6 +19,7 @@ async_session = sessionmaker(
     class_=AsyncSession,
 )
 
+
 # Dependency for FastAPI routes
 async def get_db():
     async with async_session() as session:

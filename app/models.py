@@ -3,6 +3,21 @@ from sqlalchemy import Column, Integer, String, Date, ForeignKey, Float
 from .database import Base
     
 
+class User(Base):
+    """
+    Represents a user in the system.
+
+    Attributes:
+        id (int): The primary key for the user. Automatically generated.
+        username (str): The unique username of the user. Cannot be null.
+        hashed_password (str): The hashed password of the user. Cannot be null.
+    """
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+
+
 class Book(Base):
     """
     Represents a book entity in the database.

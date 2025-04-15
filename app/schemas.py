@@ -1,6 +1,37 @@
 from datetime import date
 from pydantic import BaseModel
 
+
+class UserCreate(BaseModel):
+    """
+    UserCreate schema for creating a new user.
+
+    Attributes:
+        username (str): The username of the user.
+        password (str): The password for the user.
+    """
+    username: str
+    password: str
+
+class UserOut(BaseModel):
+    """
+    UserOut schema represents the output structure for user data.
+
+    Attributes:
+        id (int): The unique identifier of the user.
+        username (str): The username of the user.
+
+    Config:
+        orm_mode (bool): Enables compatibility with ORM objects, allowing
+        the schema to work seamlessly with ORM models.
+    """
+    id: int
+    username: str
+
+    class Config:
+        orm_mode = True
+
+
 class BookCreate(BaseModel):
     """
     BookCreate schema for creating a new book entry.
